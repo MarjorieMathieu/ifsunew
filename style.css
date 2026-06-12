@@ -1,0 +1,652 @@
+/* ============================================================
+   IFSU Équilibre — Feuille de style partagée
+   Palette : ardoise / lin / terracotta / gold / anthracite
+   Typo : Cormorant Garamond (titres) + DM Sans (corps)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --ardoise:      #4A6274;
+  --ardoise-dark: #2C3F52;
+  --lin:          #F7F3EE;
+  --lin-deep:     #EDE8E0;
+  --terracotta:   #C4714A;
+  --gold:         #C9A84C;
+  --anthracite:   #2C2C2C;
+  --gris-bleuté:  #7A9AB0;
+  --blanc:        #FFFFFF;
+
+  --font-titre: 'Cormorant Garamond', Georgia, serif;
+  --font-corps: 'DM Sans', system-ui, sans-serif;
+
+  --max-w: 860px;
+  --max-w-large: 1100px;
+  --nav-h: 68px;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-corps);
+  font-weight: 300;
+  color: var(--anthracite);
+  background: var(--lin);
+  font-size: 17px;
+  line-height: 1.7;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--ardoise-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 100;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-logo-text {
+  font-family: var(--font-titre);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--lin);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.nav-logo-text span {
+  display: block;
+  font-size: 0.7rem;
+  font-family: var(--font-corps);
+  font-weight: 300;
+  color: var(--gris-bleuté);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-corps);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--lin);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* Burger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--lin);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile nav */
+@media (max-width: 700px) {
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    background: var(--ardoise-dark);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { padding: 0; }
+  .nav-links a {
+    display: block;
+    padding: 0.75rem 2rem;
+    border-bottom: none;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================
+   LAYOUT GÉNÉRAL
+   ============================================================ */
+
+.page-body {
+  padding-top: var(--nav-h);
+}
+
+.section {
+  padding: 5rem 2rem;
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-inner-large {
+  max-width: var(--max-w-large);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-corps);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-titre);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ardoise-dark);
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-titre);
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ardoise);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.section-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+/* Séparateur */
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 2.5rem 0;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  background: var(--ardoise-dark);
+  padding: 7rem 2rem 6rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-emblem {
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.hero-title {
+  font-family: var(--font-titre);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 300;
+  color: var(--lin);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero-sub {
+  font-family: var(--font-titre);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: var(--gris-bleuté);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-tagline {
+  font-family: var(--font-corps);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ============================================================
+   BOUTONS & CTA
+   ============================================================ */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-corps);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid currentColor;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.btn-terracotta {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+}
+.btn-terracotta:hover {
+  background: var(--terracotta);
+  color: var(--lin);
+}
+
+.btn-gold {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.btn-gold:hover {
+  background: var(--gold);
+  color: var(--ardoise-dark);
+}
+
+.btn-ardoise {
+  color: var(--ardoise);
+  border-color: var(--ardoise);
+}
+.btn-ardoise:hover {
+  background: var(--ardoise);
+  color: var(--lin);
+}
+
+.btn-light {
+  color: var(--lin);
+  border-color: rgba(247,243,238,0.4);
+}
+.btn-light:hover {
+  background: rgba(247,243,238,0.1);
+}
+
+/* ============================================================
+   SECTIONS ALTERNÉES (fond clair / fond crème profond)
+   ============================================================ */
+
+.section-alt {
+  background: var(--lin-deep);
+}
+
+.section-dark {
+  background: var(--ardoise-dark);
+  color: var(--lin);
+}
+
+.section-dark .section-title { color: var(--lin); }
+.section-dark .section-text { color: rgba(247,243,238,0.8); }
+.section-dark .section-label { color: var(--gold); }
+
+/* ============================================================
+   GRILLE CARTES
+   ============================================================ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background: var(--blanc);
+  padding: 2rem;
+  border-top: 2px solid var(--gold);
+}
+
+.card-title {
+  font-family: var(--font-titre);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ardoise-dark);
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+/* ============================================================
+   TABLEAU HORAIRES
+   ============================================================ */
+
+.horaires-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.horaires-table th {
+  font-family: var(--font-corps);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ardoise);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--lin-deep);
+  text-align: left;
+}
+
+.horaires-table td {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid var(--lin-deep);
+  vertical-align: top;
+  color: #444;
+}
+
+.horaires-table tr:last-child td { border-bottom: none; }
+
+.horaires-table .jour {
+  font-weight: 500;
+  color: var(--ardoise-dark);
+  white-space: nowrap;
+}
+
+.horaires-table .tarif {
+  color: var(--terracotta);
+  font-weight: 400;
+}
+
+.horaires-table a {
+  color: var(--ardoise);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .horaires-table thead { display: none; }
+  .horaires-table tr { display: block; padding: 1rem 0; border-bottom: 1px solid var(--lin-deep); }
+  .horaires-table td { display: block; padding: 0.2rem 0; border: none; }
+  .horaires-table td::before {
+    content: attr(data-label) " ";
+    font-weight: 500;
+    color: var(--ardoise);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ============================================================
+   PHOTOS
+   ============================================================ */
+
+.photo-reduced {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-reduced-sm {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 500px) {
+  .photo-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   BLOC CITATION
+   ============================================================ */
+
+.citation {
+  border-left: 2px solid var(--gold);
+  padding: 0.5rem 0 0.5rem 1.75rem;
+  margin: 2.5rem 0;
+}
+
+.citation-text {
+  font-family: var(--font-titre);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ardoise);
+}
+
+.citation-source {
+  font-size: 0.8rem;
+  color: var(--gris-bleuté);
+  margin-top: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   BLOC INFO (tarifs, logistique)
+   ============================================================ */
+
+.info-bloc {
+  background: var(--blanc);
+  border-top: 2px solid var(--terracotta);
+  padding: 1.75rem 2rem;
+  margin-top: 2rem;
+}
+
+.info-bloc-title {
+  font-family: var(--font-corps);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1rem;
+}
+
+.info-ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--lin-deep);
+  font-size: 0.9rem;
+  gap: 1rem;
+}
+
+.info-ligne:last-child { border-bottom: none; }
+
+.info-ligne-label { color: #555; }
+.info-ligne-valeur { font-weight: 500; color: var(--ardoise-dark); text-align: right; }
+
+/* ============================================================
+   SECTION QUI SUIS-JE
+   ============================================================ */
+
+.qui-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .qui-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+.formation-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.formation-list li {
+  font-size: 0.9rem;
+  color: #555;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--lin-deep);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.formation-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  background: var(--ardoise-dark);
+  padding: 4rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.footer-emblem {
+  margin: 0 auto 1.5rem;
+  opacity: 0.85;
+}
+
+.footer-name {
+  font-family: var(--font-titre);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--lin);
+  margin-bottom: 0.25rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-corps);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-bleuté);
+  margin-bottom: 2rem;
+}
+
+.footer-contact {
+  font-size: 0.9rem;
+  color: rgba(247,243,238,0.75);
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.footer-contact a {
+  color: var(--lin);
+  text-decoration: none;
+}
+
+.footer-contact a:hover { color: var(--gold); }
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-social a {
+  font-family: var(--font-corps);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris-bleuté);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover { color: var(--gold); }
+
+.footer-divider {
+  width: 32px;
+  height: 1px;
+  background: rgba(201,168,76,0.3);
+  margin: 0 auto 1.5rem;
+}
+
+.footer-legal {
+  font-size: 0.75rem;
+  color: rgba(122,154,176,0.6);
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   UTILITAIRES
+   ============================================================ */
+
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-0 { margin-bottom: 0; }
